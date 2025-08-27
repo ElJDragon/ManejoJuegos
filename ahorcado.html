@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Bootstrap 4 CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <!-- Fuente: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tus estilos -->
+  <link rel="stylesheet" href="style.css">
+
+  <title>Hangman</title>
+</head>
+<body>
+
+<!-- ===== Overlay / Pantalla de inicio ===== -->
+<div id="startOverlay" class="start-overlay">
+  <div class="start-ornaments">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="start-panel">
+    <h1 class="start-title">El Ahorcado</h1>
+    <p class="start-sub">Ingresa tu nombre para comenzar</p>
+
+    <div class="start-form">
+      <input type="text" id="playerName" class="form-control form-control-lg" placeholder="Tu nombre" autocomplete="off">
+      <button id="btnPlay" class="btn btn-info btn-lg pulse mt-3" type="button">Jugar</button>
+      <small id="nameError" class="text-warning mt-2 d-none">Escribe tu nombre</small>
+    </div>
+  </div>
+</div>
+<!-- ===== Fin overlay ===== -->
+
+<div class="container">
+  <h1 class="text-center">El Ahorcado</h1>
+
+  <!-- Nombre del jugador + cambiar + NUEVO: mejor racha -->
+  <p class="text-center text-muted mb-1">
+    Jugador: <span id="playerLabel">Invitado</span>
+    <button id="btnChange" class="btn btn-link btn-sm ml-2" type="button">Cambiar jugador</button>
+    <span class="ml-3 d-inline-block">
+      <strong>Mejor racha:</strong> <span id="bestStreak">0</span>
+    </span>
+  </p>
+
+  <div class="float-right">
+    Suposiciones Incorrectas: <span id="mistakes">0</span> de <span id="maxWrong"></span>
+  </div>
+
+  <div class="text-center">
+    <img id="hangmanPic" src="./images/0.jpg" alt="">
+    <p>Adivina el lenguaje de programación:</p>
+    <p id="wordSpotlight">The word to be guessed goes here</p>
+
+    <div id="keyboard"></div>
+
+    <!-- Botones alineados en fila -->
+    <div class="mt-2 controls">
+      <button class="btn btn-info" id="btnHint" type="button">Pista</button>
+      <button class="btn btn-info" onClick="reset()">Reset</button>
+    </div>
+
+    <!-- Pista -->
+    <p id="hintBox" class="text-info mt-2" style="display:none;">
+      Pista: <span id="hintText"></span>
+    </p>
+  </div>
+
+  <!-- ===== NUEVO: Tablero de puntajes ===== -->
+  <div class="scoreboard card mt-4 p-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="mb-2">🏆 Tablero de puntajes</h5>
+      <div>
+        <button id="btnClearBoard" class="btn btn-sm btn-outline-danger">Limpiar tablero</button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-dark table-striped table-sm mb-0">
+        <thead>
+          <tr>
+            <th style="width:48px;">#</th>
+            <th>Jugador</th>
+            <th>Victorias</th>
+            <th>Derrotas</th>
+            <th>Mejor racha</th>
+          </tr>
+        </thead>
+        <tbody id="scoreboardBody">
+          <!-- filas dinámicas -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- ===== Fin tablero ===== -->
+
+</div>
+
+<script src="./js/hangman.js"></script>
+</body>
+</html>
+
+
