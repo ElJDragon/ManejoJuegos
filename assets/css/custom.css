@@ -116,3 +116,14 @@ a:hover {
   color: #59ab6e !important; /* naranja al pasar el mouse */
 }
 
+/* Imágenes del carrusel: mismas dimensiones y circulares */
+#template-mo-zay-hero-carousel img {
+  width: 250px;          /* ajusta el tamaño a lo que necesites */
+  height: 250px;         /* mismo valor que el width */
+  object-fit: cover;     /* recorta para que no se deforme */
+  border-radius: 50%;    /* hace que sean circulares */
+  margin: 0 auto;        /* centra la imagen */
+  display: block;
+}
+
+
