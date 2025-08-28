@@ -17,9 +17,27 @@
   <link rel="stylesheet" href="stylee.css">
 
   <title>Hangman</title>
+  <style>
+    /* 🔙 Flecha de regreso */
+    #back-arrow {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      color: #ffc107; /* Amarillo */
+      font-size: 36px;
+      text-decoration: none;
+      text-shadow: 0 0 8px #000, 0 0 4px #fff;
+      z-index: 9999;
+      transition: transform 0.2s, color 0.2s;
+    }
+    #back-arrow:hover {
+      transform: scale(1.2);
+      color: #fd7e14; /* Naranja al pasar el mouse */
+    }
+  </style>
 </head>
 <body>
-
+<a href="index.html" id="back-arrow">&#8592;</a>
 <!-- ===== Overlay / Pantalla de inicio ===== -->
 <div id="startOverlay" class="start-overlay">
   <div class="start-ornaments">
