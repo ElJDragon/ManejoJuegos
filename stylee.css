@@ -1,0 +1,183 @@
+/* ==== Paleta rápida (cámbiala a tu gusto) ==== */
+:root{
+  --text: #f8fafc;          /* texto principal */
+  --muted: #cbd5e1;         /* texto secundario */
+  --title: #22d3ee;         /* color del H1 */
+  --primary: #2563eb;       /* color de teclas / acento */
+  --primary-hover: #1d4ed8; /* hover */
+}
+
+/* ==== Fondo con imagen + overlay para contraste ==== */
+/* Coloca una imagen en images/bg.jpg. Si no tienes, seguirá viéndose el degradado. */
+html, body { height: 100%; }
+body{
+  margin: 0;
+  color: var(--text);
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #1f2937, #0f172a),
+    url("images/bg.jpg") center/cover fixed no-repeat;
+  /* oscurecer un poco para mejorar legibilidad */
+  position: relative;
+}
+body::before{
+  content:"";
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  pointer-events: none;
+}
+
+/* ==== Caja principal ==== */
+.container{
+  max-width: 980px;
+  background: rgba(17,24,39,.45);           /* “glass” */
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 10px 24px rgba(2,6,23,.5);
+  padding: 24px;
+  margin-top: 28px;
+}
+
+/* ==== Título y textos ==== */
+h1.text-center{
+  color: var(--title);
+  font-weight: 700;
+  letter-spacing: .5px;
+  margin-bottom: 18px;
+}
+.float-right{ color: var(--muted); }
+
+/* Texto de la palabra a adivinar */
+#wordSpotlight{
+  font-size: 1.6rem;
+  letter-spacing: .35rem;
+  margin: 8px 0 12px;
+}
+
+/* Subtítulo bajo la imagen */
+.container p{ color: var(--muted); }
+
+/* ==== Imagen del ahorcado ==== */
+#hangmanPic{
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  margin: 10px auto 6px;
+  display: block;
+}
+
+/* ==== Teclado (si tus letras son .btn dentro de #keyboard) ==== */
+#keyboard .btn{
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  text-transform: lowercase;
+  margin: .35rem;
+  border-radius: 10px;
+  padding: .6rem .75rem;
+}
+#keyboard .btn:hover{
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+/* Botón Reset (btn-info) a juego con el tema */
+/* botones en fila con separación */
+.controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;        /* espacio entre Pista y Reset */
+  flex-wrap: wrap;  /* que bajen si no hay ancho */
+}
+
+/* mismo estilo para ambos y deshabilitado bonito */
+.btn-info{
+  background: var(--title);
+  border-color: var(--title);
+  color: #0b1220;
+  font-weight: 700;
+  border-radius: 10px;
+}
+.btn-info:hover{ filter: brightness(.95); }
+.btn-info:disabled{ opacity:.5; cursor:not-allowed; }
+
+/* ===== Pantalla de inicio ===== */
+.start-overlay{
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(1200px 600px at 50% -10%, #0b1324, #0f172a);
+  z-index: 9999; overflow: hidden;
+}
+.start-overlay.hidden{ display: none; }
+
+.start-panel{
+  position: relative; text-align: center;
+  background: rgba(17,24,39,.62);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 24px;
+  padding: 32px 28px; width: min(92vw, 520px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 40px rgba(2,6,23,.6);
+}
+.start-title{
+  color: var(--title, #22d3ee);
+  font-weight: 800; letter-spacing: .5px; margin: 0 0 8px;
+}
+.start-sub{ color: var(--muted, #cbd5e1); margin: 0 0 16px; }
+.start-form{ display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.start-form input{ max-width: 340px; text-align: center; border-radius: 12px; }
+
+/* Botón animado */
+.pulse{ animation: pulse 1.6s infinite; }
+@keyframes pulse{
+  0%{ transform: scale(1) } 50%{ transform: scale(1.05) } 100%{ transform: scale(1) }
+}
+
+/* Burbujas flotantes */
+.start-ornaments span{
+  position: absolute; display: block; width: 140px; height: 140px;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(34,211,238,.8), rgba(34,211,238,.2) 60%, transparent 70%);
+  filter: blur(2px); border-radius: 50%;
+  animation: float 10s ease-in-out infinite;
+}
+.start-ornaments span:nth-child(1){ top: 10%; left: 12%; animation-duration: 9s; }
+.start-ornaments span:nth-child(2){ top: 70%; left: 20%; animation-duration: 11s; }
+.start-ornaments span:nth-child(3){ top: 15%; right: 18%; animation-duration: 10s; }
+.start-ornaments span:nth-child(4){ bottom: 12%; right: 10%; animation-duration: 12s; }
+.start-ornaments span:nth-child(5){ top: 40%; left: 45%; width: 90px; height: 90px; animation-duration: 9.5s; }
+
+@keyframes float{
+  0%,100%{ transform: translateY(0) }
+  50%{ transform: translateY(-18px) }
+}
+
+/* Botones en fila (ya lo usabas) */
+.controls{
+  display: flex; justify-content: center; align-items: center;
+  gap: 12px; flex-wrap: wrap;
+}
+.btn-info:disabled{ opacity:.5; cursor:not-allowed; }
+
+.btn-link{
+  color: var(--title);
+  font-weight: 700;
+  text-decoration: none;
+}
+.btn-link:hover{ text-decoration: underline; color: var(--title); }
+
+.controls{ display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; }
+.btn-link{ color: var(--title); font-weight:700; text-decoration:none; }
+.btn-link:hover{ text-decoration:underline; color: var(--title); }
+
+/* Tarjeta del scoreboard */
+.scoreboard{ background: rgba(17,24,39,.5); border:1px solid rgba(255,255,255,.08); border-radius:16px; }
+.table-dark{ color:#e5e7eb; background:#0f172a; }
+.table-dark thead th{ border-color: rgba(255,255,255,.1); }
+.table-dark tbody td{ border-color: rgba(255,255,255,.06); }
+
+/* Deshabilitado bonito */
+.btn-info:disabled{ opacity:.5; cursor:not-allowed; }
